@@ -15,6 +15,11 @@ else
     cat .zshrc >> ~/.zshrc
 fi
 
+# Install VS Code extensions
+/var/tmp/coder/code-server/bin/code-server --install-extension daylerees.rainglow
+/var/tmp/coder/code-server/bin/code-server --install-extension eamodio.gitlens
+
+
 DOTFILES_CLONE_PATH=$HOME/dotfiles
 for dotfile in "$DOTFILES_CLONE_PATH/".*; do
   # Skip `..` and '.'
@@ -27,3 +32,6 @@ for dotfile in "$DOTFILES_CLONE_PATH/".*; do
   echo "Symlinking $dotfile"
   ln -sf "$dotfile" "$HOME"
 done
+
+# Link VS Code settings
+ln -sf $DOTFILES_CLONE_PATH/.local/share/code-server/User/settings.json $HOME/.local/share/code-server/User
