@@ -15,18 +15,15 @@ else
     cat .zshrc >> ~/.zshrc
 fi
 
-# copy dotfiles into ~
-/bin/bash shopt -s dotglob # include . in *
-/bin/bash shopt -s extglob
-/bin/bash yes | /bin/bash cp -rf ~/dotfiles/!(.git|.zshrc|.|..|.local) ~
+DOTFILES_CLONE_PATH=$HOME/dotfiles
+for dotfile in "$DOTFILES_CLONE_PATH/".*; do
+  # Skip `..` and '.'
+  [[ $dotfile =~ \.{1,2}$ ]] && continue
+  # Skip Git related
+  [[ $dotfile =~ \.git$ ]] && continue
+  [[ $dotfile =~ \.gitignore$ ]] && continue
+  [[ $dotfile =~ \.gitattributes$ ]] && continue
 
-# Set VS Code preferences for the FIRST time
-if [ -f "/home/coder/.local/share/code-server/User/settings.json" ] 
-then
-    echo "VS Code settings are already present." 
-else
-    cp -rf /home/coder/dotfiles/.local ~/.local
-    # Install extensions
-    /opt/coder/code-server/bin/code-server --install-extension esbenp.prettier-vscode
-    /opt/coder/code-server/bin/code-server --install-extension daylerees.rainglow
-fi
+  echo "Symlinking $dotfile"
+  ln -sf "$dotfile" "$HOME"
+done
