@@ -3,3 +3,5 @@
 	email = me@bpmct.net
 [credential]
 	helper = store
+[pull]
+	rebase = false
