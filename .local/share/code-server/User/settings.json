@@ -2,6 +2,6 @@
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
   "_terminal.integrated.shell.linux": "/usr/bin/zsh",
-  "editor.formatOnSave": true,
-  "workbench.colorTheme": "Revelation Contrast (rainglow)"
+  "workbench.colorTheme": "Rainbow Contrast (rainglow)",
+  "editor.formatOnSave": true
 }
