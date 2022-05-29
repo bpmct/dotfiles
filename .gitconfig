@@ -1,7 +1,10 @@
 [user]
 	name = Ben
-	email = me@bpmct.net
+	email = ben@coder.com
+	signingkey = 89FFD6FBEFCACCA5
 [credential]
 	helper = store
 [pull]
 	rebase = false
+[commit]
+	gpgsign = true
